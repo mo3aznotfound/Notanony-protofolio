@@ -3,8 +3,25 @@
     padding: 0;
     box-sizing: border-box; /* This ensures padding doesn't break your widths */
 }
-body{
-    background-color: rgb(46, 46, 46);
+body {
+    position: relative;
+    min-height: 100vh;
+    margin: 0;
+    color: white; /* Text color unaffected by background brightness */
+}
+
+body::before {
+    content: '';
+    position: fixed; /* or absolute */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('https://www.baltana.com/files/wallpapers-16/4K-Black-Background-Design-HD-Wallpapers-40664.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.5); /* Only affects the background */
+    z-index: -1;
 }
 .navbar{
     z-index: 999;
@@ -48,11 +65,11 @@ body{
 }
 .card{
     margin-top: 30px;
-    width: 250px;
-    min-height: 350px; /* Increased slightly so text isn't cramped */
+    width: 300px;
+    min-height: 400px; /* Increased slightly so text isn't cramped */
     transition: 0.2s;
     border-radius: 9px;
-    border: solid white 2px;
+    border: solid rgb(10, 100, 184) 2px;
     background-color: rgb(41, 40, 40);
     box-shadow: 0 0 15px rgba(48, 48, 48, 0.8),
                 0 0 30px rgba(248, 246, 236, 0.4);
@@ -62,9 +79,28 @@ body{
 }
 .card:hover{
     transform: translateY(-8px);
+    margin-top: 30px;
+    width: 300px;
+    min-height: 400px; /* Increased slightly so text isn't cramped */
+    transition: 0.2s;
+    border-radius: 9px;
+    border: solid rgb(114, 187, 255) 2px;
+    background-color: rgb(41, 40, 40);
+    box-shadow: 0 0 15px rgba(48, 48, 48, 0.8),
+                0 0 30px rgba(248, 246, 236, 0.4);
+    display: flex;
+    flex-direction: column; 
+    overflow: hidden; 
 }
 p, h1, h2, h3, a, h4, h5{
     font-family: "Montserrat", sans-serif;
+}
+p{
+    margin-top: 50px;
+    font-size: 20px;
+    background-color: #363636;
+    padding: 10px;
+    border-radius: 10px;
 }
 .title{
     text-align: center;
@@ -84,22 +120,131 @@ p, h1, h2, h3, a, h4, h5{
 .button {
     margin-top: auto; 
     padding: 10px 0;
-    width: 100%;
-}
-.button button {
-   cursor: pointer;
-   padding: 12px;
-   width: 100%;
-   border-radius: 70px;
-   background-color: rgb(0, 0, 0);
-   color: white;
-   font-family: "Montserrat", sans-serif;
-   transition: 0.6s;
-   border: solid 4px rgb(255, 217, 0);
-   outline: none;
+    width: 75%;
+    text-align: center;
 }
 .button button:hover {
-    transform: scale(1.03);
-    box-shadow: 0 0 15px rgba(255, 215, 0, 0.8),
-                0 0 30px rgba(235, 200, 1, 0.943);
+    padding-top: 25px;
+    box-shadow: 3px 0 10px rgba(104, 207, 255, 0.8),
+                3px 0 12px rgba(131, 230, 255, 0.943);
+    border: solid 2px rgb(206, 231, 255);
+    color:rgb(156, 156, 156);
+}
+/* Add this to your existing CSS */
+.button {
+    margin-top: auto; 
+    padding: 5px 0;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px; /* Space between price and button */
+}
+
+.price {
+    color: #ffd700; /* Gold color for price */
+    font-size: 18px;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.price s {
+    color: #8d8d8d;
+    font-size: 14px;
+    margin-left: 5px;
+}
+
+.button button {
+    cursor: pointer;
+    padding: 12px;
+    width: 100%;
+    border-bottom-right-radius:0px;
+    border-top-right-radius: 45px;
+    border-top-left-radius: 45px;
+    border-bottom-left-radius:0px;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    font-family: "Montserrat", sans-serif;
+    transition: 0.3s;
+    border: solid 2px rgb(69, 165, 255);
+    outline: none;
+    margin-bottom: 0; /* Remove margin-bottom since we have gap now */
+}
+.top-half {
+    width: 100%;
+    height: 50vh; /* 50% of viewport height */
+    background-color: black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    animation: moveUp 2s ease forwards;
+}
+
+@keyframes moveUp {
+    0% {
+        top: 0;
+    }
+    15%{
+        top: 0;
+    }
+    100% {
+        top: -100%; /* Moves completely off screen */
+    }
+}
+.bottom-half {
+    width: 100%;
+    height: 50vh; /* 50% of viewport height */
+    background-color: black;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 9999;
+    animation: moveDown 2s ease forwards;
+}
+
+@keyframes moveDown {
+    0% {
+        bottom: 0;
+    }
+    15%{
+        bottom: 0;
+    }
+    100% {
+        bottom: -100%; /* Moves completely off screen */
+    }
+}
+h3{
+    text-align: center;
+    margin-top: 10%;
+    font-size: 50px;
+    color: #82adff;
+}
+.description{
+    width: 100%;
+    min-height: 400px; /* Increased slightly so text isn't cramped */
+    transition: 0.2s;
+    border-radius: 10px;
+    background-color: rgb(41, 40, 40);
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    background-image: url('https://cdn.pixabay.com/video/2023/03/04/153079-804706258_tiny.jpg');
+    background-size: 100%;
+}
+h4{
+    color:#be9aff;
+    font-size: 50px;
+    text-align: center;
+    margin-top: 200px;
+}
+s{
+    color: red;
+}
+h5{
+    color:#bbbbbb;
+    font-size: 35px;
+    text-align: center;
 }
